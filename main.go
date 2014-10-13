@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "marktown-frontend/routers"
+	_ "github.com/Marktown/frontend/routers"
 	"github.com/astaxie/beego"
 )
 

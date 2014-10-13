@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"marktown-frontend/controllers"
+	"github.com/Marktown/frontend/controllers"
 	"github.com/astaxie/beego"
 )
 

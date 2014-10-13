@@ -5,7 +5,7 @@
   "main": "livereload.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Marktown/frontend.git"
+    "url": "git://github.com/Marktown/frontend/.git"
   },
   "author": "",
   "license": "ISC",
