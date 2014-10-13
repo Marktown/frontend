@@ -4,9 +4,14 @@ Web frontend for [Marktown](https://github.com/Marktown) written in [Go](http://
 
 Project to learn golang.org to build a Markdown writing environment.
 
-## Development
+## Development Requirements
 
-Please make sure you have [Go](http://golang.org/), [Ruby](http://ruby-lang.org) (for [Sass](http://sass-lang.com/)), [Node.js](http://nodejs.org/) and [npm](https://github.com/npm/npm) (for asset management via [Bower](http://bower.io) and  [Livereload](http://livereload.com/)) installed.
+* [Go](http://golang.org/)
+* [Ruby](http://ruby-lang.org) for [Sass](http://sass-lang.com/)
+* [Node.js](http://nodejs.org/) + [npm](https://github.com/npm/npm) for asset management via [Bower](http://bower.io)
+* [Livereload](http://livereload.com/)
+
+## Development Environment
 
 1. Setup dependencies
 
