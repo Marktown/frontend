@@ -1,0 +1,31 @@
+{
+  "name": "marktown-frontend",
+  "version": "0.0.0",
+  "description": "## Audience",
+  "main": "livereload.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Marktown/frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marktown/frontend/issues"
+  },
+  "homepage": "https://github.com/Marktown/frontend",
+  "dependencies": {
+    "bower": "",
+    "wiredep": "",
+    "grunt-wiredep": "",
+    "grunt-contrib-watch": "",
+    "grunt-contrib-sass": "",
+    "grunt-shell": "",
+    "grunt-cli": ""
+  },
+  "devDependencies": {},
+  "scripts": {
+    "watch": "grunt watch",
+    "bower": "grunt shell:bower",
+    "compile": "grunt sass"
+  }
+}

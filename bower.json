@@ -1,0 +1,25 @@
+{
+  "name": "marktown-frontend",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Marktown/frontend",
+  "authors": [
+    "Jens Bissinger <mail@jens-bissinger.de>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "static/bower_components"
+  ],
+  "dependencies": {
+    "bootstrap-sass": ""
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": ["./dist/js/bootstrap.js", "./dist/fonts/*"]
+    }
+  }
+}
