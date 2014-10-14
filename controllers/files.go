@@ -1,9 +1,5 @@
 package controllers
 
-import (
-	"github.com/Marktown/frontend/models"
-)
-
 type PathItem struct {
 	Path  string     `json:"name"`
 	Items []PathItem `json:"items"`
@@ -38,18 +34,12 @@ func (this *FilesController) Index() {
 
 func (this *FilesController) New() {
 	this.TplNames = "files/new.html.tpl"
-	file := new(models.File)
-	models.FileHandler().Create(file)
 }
 
 func (this *FilesController) Update() {
 	this.TplNames = "files/update.html.tpl"
-	file := new(models.File)
-	models.FileHandler().Update(file)
 }
 
 func (this *FilesController) Delete() {
 	this.TplNames = "files/delete.html.tpl"
-	file := new(models.File)
-	models.FileHandler().Delete(file)
 }
