@@ -2,3 +2,24 @@ $icon-font-path: '/static/bower_components/bootstrap-sass/fonts/';
 $brand-primary: #0E71BE;
 
 @import "bootstrap";
+
+.navbar-header {
+  margin-right: 20px !important;
+}
+
+.navbar-brand {
+  background: url('/static/images/logo48.png') no-repeat;
+  margin-top: 2px;
+  width: 48px;
+  height: 48px;
+  margin-left: 10px !important;
+}
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .navbar-brand {
+    background-image: url('/static/images/logo96.png');
+    -webkit-background-size: 48px 48px;
+  }
+}

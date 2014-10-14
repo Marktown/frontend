@@ -9,7 +9,7 @@
     <!-- endbower -->
     <link rel="stylesheet" href="/static/css/app.css" />
     <link rel=icon href="/static/images/logo.ico" sizes="128x128" type="image/vnd.microsoft.icon">
-    <link rel=icon href="/static/images/logo.png" sizes="128x128" type="image/png">
+    <link rel=icon href="/static/images/logo.png" sizes="16x16 32x32 48x48 64x64" type="image/png">
   </head>
   <body class="{{.context.ControllerName}} {{.context.ActionName}}">
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
