@@ -1,6 +1,6 @@
-package models
+package backends
 
-type FileStoreInterface interface {
+type FileStore interface {
   // create new file at path
   CreateFile(path string, content []byte) (written bool, err error)
 
