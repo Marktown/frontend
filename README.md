@@ -4,6 +4,8 @@ Web frontend for [Marktown](https://github.com/Marktown) written in [Go](http://
 
 Project to learn golang.org to build a Markdown writing environment.
 
+[![Build Status](https://travis-ci.org/Marktown/frontend.svg?branch=master)](https://travis-ci.org/Marktown/frontend)
+
 ## Development Requirements
 
 * [Go](http://golang.org/)

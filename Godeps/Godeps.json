@@ -1,0 +1,11 @@
+{
+	"ImportPath": "github.com/Marktown/frontend",
+	"GoVersion": "go1.3.3",
+	"Deps": [
+		{
+			"ImportPath": "github.com/astaxie/beego",
+			"Comment": "v1.4.1-46-ga760e46",
+			"Rev": "a760e46f9809ebb7a055901465ecabdc1da15b9c"
+		}
+	]
+}
