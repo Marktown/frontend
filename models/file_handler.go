@@ -1,17 +1,21 @@
 package models
 
-type FileHandler struct {
+type FSFileHandler struct {
 }
 
-func (this *FileHandler) Create (file *File) {
+func (this *FSFileHandler) Create(file *File) {
 	// execute "touch " + file.Path
 	// execute "echo \"" + file.Content "\" > " + file.Path
 }
 
-func (this *FileHandler) Update (file *File) {
+func (this *FSFileHandler) Update(file *File) {
 	// execute "echo \"" + file.Content "\" > " + file.Path
 }
 
-func (this *FileHandler) Remove (file *File) {
+func (this *FSFileHandler) Delete(file *File) {
 	// execute "rm " + file.Path
+}
+
+func FileHandler() (fileHandler FileHandlerInterface) {
+	return new(FSFileHandler)
 }
