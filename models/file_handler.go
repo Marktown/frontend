@@ -10,7 +10,7 @@ type FSFileHandler struct {
 }
 
 func (this *FSFileHandler) Create(file *File) (err error) {
-	err = ioutil.WriteFile(this.FileFolder + file.Path, []byte(file.Content), os.ModePerm)
+	err = ioutil.WriteFile(this.FileFolder+file.Path, []byte(file.Content), os.ModePerm)
 	return
 }
 
@@ -23,7 +23,7 @@ func (this *FSFileHandler) Read(file *File) (content string, err error) {
 }
 
 func (this *FSFileHandler) Update(file *File) (err error) {
-	err = ioutil.WriteFile(this.FileFolder + file.Path, []byte(file.Content), os.ModePerm)
+	err = ioutil.WriteFile(this.FileFolder+file.Path, []byte(file.Content), os.ModePerm)
 	return
 }
 
@@ -34,6 +34,6 @@ func (this *FSFileHandler) Delete(file *File) (err error) {
 
 func FileHandler() (fileHandler FileHandlerInterface) {
 	fh := new(FSFileHandler)
-	fh.FileFolder = "assets/"
+	fh.FileFolder = "assets_test/"
 	return fh
 }
