@@ -4,6 +4,11 @@ import (
 	"github.com/Marktown/frontend/models"
 )
 
+type PathItem struct {
+	Path  string     `json:"name"`
+	Items []PathItem `json:"items"`
+}
+
 type FilesController struct {
 	BaseController
 }
@@ -15,6 +20,20 @@ func (this *FilesController) Prepare() {
 
 func (this *FilesController) Index() {
 	this.TplNames = "files/index.html.tpl"
+	pathItems := PathItem{"/", []PathItem{
+		PathItem{"/foo", []PathItem{}},
+		PathItem{"/bar", []PathItem{
+			PathItem{"/bar/bax", []PathItem{}},
+			PathItem{"/bar/baz", []PathItem{}},
+		}},
+		PathItem{"/fax", []PathItem{
+			PathItem{"/fax/ban", []PathItem{}},
+			PathItem{"/fax/bam", []PathItem{}},
+		}},
+		PathItem{"/faz", []PathItem{}},
+	}}
+	this.Data["json"] = &pathItems
+	this.ServeJson()
 }
 
 func (this *FilesController) New() {

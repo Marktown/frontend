@@ -5,12 +5,12 @@
       <ol ui-tree-nodes="" ng-model="list">
         <li ng-repeat="item in list" ui-tree-node>
           <div ui-tree-handle>
-            ${item.title}
+            ${item.name}
           </div>
           <ol ui-tree-nodes="" ng-model="item.items">
             <li ng-repeat="subItem in item.items" ui-tree-node>
               <div ui-tree-handle>
-                ${subItem.title}
+                ${subItem.name}
               </div>
             </li>
           </ol>
