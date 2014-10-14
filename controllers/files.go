@@ -20,7 +20,11 @@ func (this *FilesController) Index() {
 func (this *FilesController) New() {
 	this.TplNames = "files/new.html.tpl"
 	file := new(models.File)
-	models.FileHandler().Create(file)
+	file.Path = "test_foo"
+	err := models.FileHandler().Create(file)
+	if err == nil {
+
+	}
 }
 
 func (this *FilesController) Update() {

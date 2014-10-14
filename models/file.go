@@ -1,6 +1,6 @@
 package models
 
 type File struct {
-	Path string
+	Path    string
 	Content string
 }
