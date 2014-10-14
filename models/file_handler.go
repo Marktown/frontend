@@ -34,6 +34,6 @@ func (this *FSFileHandler) Delete(file *File) (err error) {
 
 func FileHandler() (fileHandler FileHandlerInterface) {
 	fh := new(FSFileHandler)
-	fh.FileFolder = "assets_test/"
+	fh.FileFolder = "tmp/file_system/"
 	return fh
 }
