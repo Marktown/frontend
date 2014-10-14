@@ -12,9 +12,14 @@
       <link rel=icon href="/static/images/logo.png" sizes="128x128" type="image/png">
   </head>
     <body class="{{.context.ControllerName}} {{.context.ActionName}}">
-		<div class="">
+		<div class="navbar">
+		</div>
+		<div class="file-browser">
+		</div>
+		<div class="content">
 			{{.LayoutContent}}
 		</div>
+		<footer>Copyright &copy; 2014 {{.Authors}}</footer>
       <!-- bower:js -->
       <script src="../../static/bower_components/jquery/dist/jquery.js"></script>
       <script src="../../static/bower_components/bootstrap-sass/dist/js/bootstrap.js"></script>

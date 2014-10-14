@@ -10,4 +10,5 @@ type BaseController struct {
 
 func (this *BaseController) SetupEnv() {
 	this.Data["RunMode"] = beego.RunMode
+	this.Data["Authors"] = "Andreas Bissinger, Jens Bissinger"
 }
