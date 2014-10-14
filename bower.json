@@ -15,7 +15,8 @@
     "static/bower_components"
   ],
   "dependencies": {
-    "bootstrap-sass": ""
+    "bootstrap-sass": "",
+    "angular-ui-tree": ""
   },
   "overrides": {
     "bootstrap-sass": {
