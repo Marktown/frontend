@@ -20,5 +20,6 @@
       <script src="../../static/bower_components/bootstrap-sass/dist/js/bootstrap.js"></script>
       <!-- endbower -->
       <script src="../../static/js/app.js"></script>
+      {{if eq .RunMode "dev"}}<script src="//localhost:35729/livereload.js"></script>{{end}}
     </body>
 </html>

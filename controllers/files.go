@@ -1,14 +1,11 @@
 package controllers
 
-import (
-	"github.com/astaxie/beego"
-)
-
 type FilesController struct {
-	beego.Controller
+	BaseController
 }
 
 func (this *FilesController) Prepare() {
+	this.SetupEnv()
 	this.Layout = "layouts/default.html.tpl"
 }
 
