@@ -1,8 +1,9 @@
 package controllers
 
-import (
-	"github.com/Marktown/frontend/models"
-)
+type PathItem struct {
+	Path  string     `json:"name"`
+	Items []PathItem `json:"items"`
+}
 
 type FilesController struct {
 	BaseController
@@ -15,26 +16,30 @@ func (this *FilesController) Prepare() {
 
 func (this *FilesController) Index() {
 	this.TplNames = "files/index.html.tpl"
+	pathItems := PathItem{"/", []PathItem{
+		PathItem{"/foo", []PathItem{}},
+		PathItem{"/bar", []PathItem{
+			PathItem{"/bar/bax", []PathItem{}},
+			PathItem{"/bar/baz", []PathItem{}},
+		}},
+		PathItem{"/fax", []PathItem{
+			PathItem{"/fax/ban", []PathItem{}},
+			PathItem{"/fax/bam", []PathItem{}},
+		}},
+		PathItem{"/faz", []PathItem{}},
+	}}
+	this.Data["json"] = &pathItems
+	this.ServeJson()
 }
 
 func (this *FilesController) New() {
 	this.TplNames = "files/new.html.tpl"
-	file := new(models.File)
-	file.Path = "test_foo"
-	err := models.FileHandler().Create(file)
-	if err == nil {
-
-	}
 }
 
 func (this *FilesController) Update() {
 	this.TplNames = "files/update.html.tpl"
-	file := new(models.File)
-	models.FileHandler().Update(file)
 }
 
 func (this *FilesController) Delete() {
 	this.TplNames = "files/delete.html.tpl"
-	file := new(models.File)
-	models.FileHandler().Delete(file)
 }
