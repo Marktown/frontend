@@ -4,9 +4,8 @@ app.config(function($interpolateProvider) {
   $interpolateProvider.endSymbol('}');
 });
 app.controller("Home", function($scope, $http) {
-  $scope.list = [];
+  $scope.items = [];
   $http.get('/files').success(function (data) {
-    console.log(data);
-    $scope.list = [data];
+    $scope.items = [data];
   });
 });
