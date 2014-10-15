@@ -19,10 +19,12 @@
       </div>
     </div>
     <div class="col-md-9 mt-editor" ng-controller="Editor">
-      <div class="container-fluid">
+      <div class="container-fluid" ng-if="!error">
         <div class="col-md-6" style="white-space: pre;">${file.data}</div>
-        <div class="col-md-6" marked="file.data">
-        </div>
+        <div class="col-md-6" marked="file.data"></div>
+      </div>
+      <div class="container-fluid" ng-if="error">
+        <div class="col-md-12" data-ng-bind-html="error"></div>
       </div>
     </div>
   <div>
