@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          loadPath: 'static/bower_components/bootstrap-sass/lib'
+          loadPath: 'static/bower_components/bootstrap-sass-official/assets/stylesheets'
         },
         files: [{
           expand: true,
