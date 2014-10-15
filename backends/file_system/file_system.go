@@ -10,7 +10,10 @@ type FileStore struct {
 }
 
 func (this *FileStore) CreateFile(path string, content []byte) (created bool, err error) {
-  err = ioutil.WriteFile(path, content, os.FileMode)
+  err = ioutil.WriteFile(path, content, os.ModePerm)
+  if err == nil {
+    created = true
+  }
   return
 }
 
