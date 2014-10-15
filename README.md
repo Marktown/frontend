@@ -33,6 +33,10 @@ Project to learn golang.org to build a Markdown writing environment.
 
         $ make watch
 
+## TODO
+
+- better name for FileStore "base"
+
 ## License
 
 See [LICENSE](LICENSE).
