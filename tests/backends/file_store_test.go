@@ -65,7 +65,7 @@ func TestMain(t *testing.T) {
 			dirErr := fs.CreateDir("dir_a")
 			So(dirErr, ShouldBeNil)
 			_, dirErr = os.Stat(fs.RootPath + "dir_a")
-			So(os.IsExist(dirErr), ShouldBeTrue)
+			So(dirErr, ShouldBeNil)
 		})
 
 		Convey("Move", func() {
@@ -74,7 +74,7 @@ func TestMain(t *testing.T) {
 			_, fileErrNot := os.Stat(fs.RootPath + "file_a.txt")
 			So(os.IsNotExist(fileErrNot), ShouldBeTrue)
 			_, fileErrExist := os.Stat(fs.RootPath + "file_b.txt")
-			So(os.IsExist(fileErrExist), ShouldBeTrue)
+			So(fileErrExist, ShouldBeNil)
 		})
 
 		Convey("Delete", func() {
