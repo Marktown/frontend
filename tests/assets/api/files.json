@@ -1,0 +1,29 @@
+{
+  "name": "/",
+  "items": [
+    {
+      "name": "dir_a",
+      "items": []
+    },
+    {
+      "name": "dir_b",
+      "items": []
+    },
+    {
+      "name": "dir_c",
+      "items": []
+    },
+    {
+      "name": "file_a.md",
+      "items": []
+    },
+    {
+      "name": "file_b.md",
+      "items": []
+    },
+    {
+      "name": "file_c.md",
+      "items": []
+    }
+  ]
+}

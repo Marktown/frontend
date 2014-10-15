@@ -24,7 +24,6 @@ func (this *FilesController) Prepare() {
 }
 
 func (this *FilesController) Index() {
-	this.TplNames = "files/index.html.tpl"
 	fs := file_system.NewFileStore()
 	fs.RootPath = "tests/assets/testfolder/"
 	list, err := fs.ReadDir("")
