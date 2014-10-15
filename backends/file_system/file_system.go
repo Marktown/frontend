@@ -62,11 +62,11 @@ func (this *FileStore) ReadDir(path string) (list []os.FileInfo, err error) {
 }
 
 func (this *FileStore) Move(path string, newPath string) (err error) {
-	panic("Not implemented")
+	err = os.Rename(this.RootPath+path, this.RootPath+newPath)
 	return
 }
 
 func (this *FileStore) Delete(path string) (err error) {
-	panic("Not implemented")
+	err = os.Remove(this.RootPath + path)
 	return
 }

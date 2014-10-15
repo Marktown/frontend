@@ -4,6 +4,7 @@ import (
 	"github.com/Marktown/frontend/backends/file_system"
 
 	"io"
+	"os"
 	"strings"
 	"testing"
 	"text/scanner"
@@ -26,33 +27,70 @@ func readAll(reader io.Reader) (data string) {
 
 // TestMain is a sample to run an endpoint test
 func TestMain(t *testing.T) {
+	fs := file_system.NewFileStore()
+	fs.RootPath = "../../tmp/tests/fs_file_store/"
+
+	_ = os.Remove(fs.RootPath + "testfile_b.txt")
+	_ = os.Remove(fs.RootPath + "testfile_b_new.txt")
+	_ = os.Remove(fs.RootPath + "dir_a")
+	_ = os.Remove(fs.RootPath + "testdir")
+
 	Convey("Subject: FileStore\n", t, func() {
-		fs := file_system.NewFileStore()
-		fs.RootPath = "../../tmp/tests/fs_file_store/"
 		Convey("Create", func() {
-			So(fs.RootPath, ShouldEqual, "../../tmp/tests/fs_file_store/")
-			err := fs.CreateFile("testfile_b.txt", strings.NewReader("foo bar"))
-			So(err, ShouldBeNil)
-			reader, err := fs.ReadFile("testfile_b.txt")
-			So(readAll(reader), ShouldEqual, "foo bar")
-			So(err, ShouldBeNil)
+			fileErr := fs.CreateFile("file_a.txt", strings.NewReader("content_a"))
+			So(fileErr, ShouldBeNil)
+			fileReader, fileErr := fs.ReadFile("file_a.txt")
+			So(readAll(fileReader), ShouldEqual, "content_a")
+			So(fileErr, ShouldBeNil)
+
+			dirErr := fs.CreateDir("dir_a")
+			So(dirErr, ShouldBeNil)
 		})
 
 		Convey("Read", func() {
 			fs.RootPath = "../../tests/assets/"
-			reader, err := fs.ReadFile("testfile.txt")
-			So(readAll(reader), ShouldEqual, "this is the textfile\n")
-			So(err, ShouldBeNil)
+			fileReader, fileErr := fs.ReadFile("testfile.txt")
+			So(readAll(fileReader), ShouldEqual, "this is the textfile\n")
+			So(fileErr, ShouldBeNil)
+
+			// TODO dir
 			fs.RootPath = "../../tmp/tests/fs_file_store/"
 		})
 
 		Convey("Update", func() {
-			err := fs.UpdateFile("testfile_b.txt", strings.NewReader("foo bar baz"))
-			So(err, ShouldBeNil)
-			reader, err := fs.ReadFile("testfile_b.txt")
-			So(readAll(reader), ShouldEqual, "foo bar baz")
-			So(err, ShouldBeNil)
+			fileErr := fs.UpdateFile("file_a.txt", strings.NewReader("content_b"))
+			So(fileErr, ShouldBeNil)
+			fileReader, fileErr := fs.ReadFile("file_a.txt")
+			So(readAll(fileReader), ShouldEqual, "content_b")
+			So(fileErr, ShouldBeNil)
 		})
 
+		Convey("CreateDir", func() {
+			dirErr := fs.CreateDir("testdir")
+			So(dirErr, ShouldBeNil)
+			_, dirErr = os.Stat(fs.RootPath + "testdir")
+			So(os.IsExist(dirErr), ShouldBeTrue)
+		})
+
+		Convey("Move", func() {
+			fileErr := fs.Move("file_a.txt", "file_b.txt")
+			So(fileErr, ShouldBeNil)
+			_, fileErrNot := os.Stat(fs.RootPath + "file_a.txt")
+			So(os.IsNotExist(fileErrNot), ShouldBeTrue)
+			_, fileErrExist := os.Stat(fs.RootPath + "file_b.txt")
+			So(os.IsExist(fileErrExist), ShouldBeTrue)
+		})
+
+		Convey("Delete", func() {
+			fileErr := fs.Delete("file_b.txt")
+			So(fileErr, ShouldBeNil)
+			_, fileErr = os.Stat(fs.RootPath + "file_b.txt")
+			So(os.IsNotExist(fileErr), ShouldBeTrue)
+
+			dirErr := fs.Delete("dir_a")
+			So(dirErr, ShouldBeNil)
+			_, dirErr = os.Stat(fs.RootPath + "dir_a")
+			So(os.IsNotExist(dirErr), ShouldBeTrue)
+		})
 	})
 }
