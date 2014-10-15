@@ -1,21 +1,22 @@
 package backends
 
 import (
+	"io"
 	"os"
 )
 
 type FileStore interface {
 	// create new file at given path
-	CreateFile(path string, content []byte) (err error)
+	CreateFile(path string, reader io.Reader) (err error)
 
 	// update existing file at given path
-	UpdateFile(path string, content []byte) (err error)
+	UpdateFile(path string, reader io.Reader) (err error)
 
 	// create dir at given path
 	CreateDir(path string) (err error)
 
 	// read content of file at given path
-	ReadFile(path string) (content []byte, err error)
+	ReadFile(path string) (reader io.Reader, err error)
 
 	// list direct child paths within dir at path
 	ReadDir(path string) (list []os.FileInfo, err error)

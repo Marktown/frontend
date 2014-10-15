@@ -1,6 +1,8 @@
 package file_system
 
 import (
+	"bufio"
+	"io"
 	"io/ioutil"
 	"os"
 
@@ -12,13 +14,23 @@ type FileStore struct {
 	FilePath string
 }
 
-func (this *FileStore) CreateFile(path string, content []byte) (err error) {
-	err = ioutil.WriteFile(path, content, os.ModePerm)
+func (this *FileStore) CreateFile(path string, reader io.Reader) (err error) {
+	dataInBytes := []byte{}
+	_, err = reader.Read(dataInBytes)
+	if err != nil {
+		return
+	}
+	err = ioutil.WriteFile(path, dataInBytes, os.ModePerm)
 	return
 }
 
-func (this *FileStore) UpdateFile(path string, content []byte) (err error) {
-	err = ioutil.WriteFile(path, content, os.ModePerm)
+func (this *FileStore) UpdateFile(path string, reader io.Reader) (err error) {
+	dataInBytes := []byte{}
+	_, err = reader.Read(dataInBytes)
+	if err != nil {
+		return
+	}
+	err = ioutil.WriteFile(path, dataInBytes, os.ModePerm)
 	return
 }
 
@@ -27,8 +39,12 @@ func (this *FileStore) CreateDir(path string) (err error) {
 	return
 }
 
-func (this *FileStore) ReadFile(path string) (content []byte, err error) {
-	content, err = ioutil.ReadFile(path)
+func (this *FileStore) ReadFile(path string) (reader io.Reader, err error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return
+	}
+	reader = bufio.NewReader(file)
 	return
 }
 
