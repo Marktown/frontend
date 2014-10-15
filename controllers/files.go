@@ -25,21 +25,6 @@ func (this *FilesController) Prepare() {
 
 func (this *FilesController) Index() {
 	this.TplNames = "files/index.html.tpl"
-	pathItems := PathItem{"/", []PathItem{
-		PathItem{"/foo", []PathItem{}},
-		PathItem{"/bar", []PathItem{
-			PathItem{"/bar/bax", []PathItem{}},
-			PathItem{"/bar/baz", []PathItem{}},
-		}},
-		PathItem{"/fax", []PathItem{
-			PathItem{"/fax/ban", []PathItem{}},
-			PathItem{"/fax/bam", []PathItem{}},
-		}},
-		PathItem{"/faz", []PathItem{}},
-	}}
-	this.Data["json"] = &pathItems
-	//this.ServeJson()
-
 	fs := file_system.NewFileStore()
 	list, err := fs.ReadDir("")
 	//TODO error handling
@@ -47,13 +32,13 @@ func (this *FilesController) Index() {
 		return
 	}
 	//TODO use ReadDirTree for recursive reading, must be implemented
-	testPathItems := PathItem{"/", []PathItem{}}
+	pathItems := PathItem{"/", []PathItem{}}
 	items := make([]PathItem, len(list))
 	for index, file := range list {
 		items[index] = PathItem{file.Name(), []PathItem{}}
 	}
-	testPathItems.Items = items
-	this.Data["json"] = &testPathItems
+	pathItems.Items = items
+	this.Data["json"] = &pathItems
 	this.ServeJson()
 }
 
