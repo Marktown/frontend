@@ -11,7 +11,7 @@ import (
 func TestMain(t *testing.T) {
 	Convey("Subject: FSFileStore\n", t, func() {
 		Convey("Create", func() {
-			err := models.FSFileStore().CreateFile("../assets/testfile_b.txt", "foo bar")
+			err := models.FSFileStore().CreateFile("../assets/testfile_b.txt", []byte("foo bar"))
 			So(err, ShouldBeNil)
 			bytes, err := models.FSFileStore().ReadFile("../assets/testfile_b.txt")
 			So(string(bytes), ShouldEqual, "foo bar")
@@ -25,7 +25,7 @@ func TestMain(t *testing.T) {
 		})
 
 		Convey("Update", func() {
-			err := models.FSFileStore().UpdateFile("../assets/testfile_b.txt", "foo bar baz")
+			err := models.FSFileStore().UpdateFile("../assets/testfile_b.txt", []byte("foo bar baz"))
 			So(err, ShouldBeNil)
 			bytes, err := models.FSFileStore().ReadFile("../assets/testfile_b.txt")
 			So(string(bytes), ShouldEqual, "foo bar baz")
