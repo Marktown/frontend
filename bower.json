@@ -16,11 +16,16 @@
   ],
   "dependencies": {
     "bootstrap-sass": "",
-    "angular-ui-tree": ""
+    "angular-ui-tree": "",
+    "marked": "",
+    "angular-marked": ""
   },
   "overrides": {
     "bootstrap-sass": {
       "main": ["./dist/js/bootstrap.js", "./dist/fonts/*"]
+    },
+    "marked": {
+      "main": ["./lib/marked.js"]
     }
   }
 }

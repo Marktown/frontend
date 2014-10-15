@@ -1,8 +1,16 @@
 package controllers
 
+import (
+	"io/ioutil"
+)
+
 type PathItem struct {
 	Path  string     `json:"name"`
 	Items []PathItem `json:"items"`
+}
+
+type Textfile struct {
+	Data string `json:"data"`
 }
 
 type FilesController struct {
@@ -34,6 +42,17 @@ func (this *FilesController) Index() {
 
 func (this *FilesController) New() {
 	this.TplNames = "files/new.html.tpl"
+}
+
+func (this *FilesController) Read() {
+	textfile := Textfile{}
+	dataAsBytes, err := ioutil.ReadFile("tests/assets/testfile.md")
+	if err != nil {
+		return
+	}
+	textfile.Data = string(dataAsBytes)
+	this.Data["json"] = &textfile
+	this.ServeJson()
 }
 
 func (this *FilesController) Update() {
