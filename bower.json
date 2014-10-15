@@ -15,15 +15,12 @@
     "static/bower_components"
   ],
   "dependencies": {
-    "bootstrap-sass": "",
+    "bootstrap-sass-official": "",
     "angular-ui-tree": "",
     "marked": "",
     "angular-marked": ""
   },
   "overrides": {
-    "bootstrap-sass": {
-      "main": ["./dist/js/bootstrap.js", "./dist/fonts/*"]
-    },
     "marked": {
       "main": ["./lib/marked.js"]
     }
