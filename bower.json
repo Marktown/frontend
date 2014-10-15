@@ -18,7 +18,8 @@
     "bootstrap-sass-official": "",
     "angular-ui-tree": "",
     "marked": "",
-    "angular-marked": ""
+    "angular-marked": "",
+    "angular-route": ""
   },
   "overrides": {
     "marked": {

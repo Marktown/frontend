@@ -8,8 +8,11 @@ app.controller("Home", function($scope, $http) {
     $scope.items = [data];
   });
 });
-app.controller("Editor", function($scope, $http) {
-  $http.get('/files/1').success(function (data) {
-    $scope.file = data;
+app.controller("Editor", function($scope, $http, $rootScope, $location) {
+  $rootScope.$on('$locationChangeSuccess', function(event, next, current) {
+    var path = $location.$$search.path;
+    $http.get('/files/data?path='+path).success(function (data) {
+      $scope.file = data;
+    });
   });
 });

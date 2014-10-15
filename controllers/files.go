@@ -64,10 +64,9 @@ func (this *FilesController) New() {
 
 func (this *FilesController) Read() {
 	textfile := Textfile{}
-	//dataAsBytes, err := ioutil.ReadFile("tests/assets/testfile.md")
 	fs := file_system.NewFileStore()
-	fs.RootPath = "tests/assets/"
-	reader, err := fs.ReadFile("testfile.md")
+	fs.RootPath = "tests/assets/testfolder/"
+	reader, err := fs.ReadFile(this.GetString("path"))
 	if err != nil {
 		return
 	}
@@ -81,7 +80,6 @@ func (this *FilesController) Read() {
 		textfile.Data += s.TokenText()
 		tok = s.Scan()
 	}
-	//textfile.Data = string(dataAsBytes)
 	this.Data["json"] = &textfile
 	this.ServeJson()
 }

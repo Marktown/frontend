@@ -34,6 +34,7 @@
     <script src="../../static/bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
     <script src="../../static/bower_components/marked/lib/marked.js"></script>
     <script src="../../static/bower_components/angular-marked/angular-marked.js"></script>
+    <script src="../../static/bower_components/angular-route/angular-route.js"></script>
     <!-- endbower -->
     <script src="../../static/js/app.js"></script>
     {{if eq .RunMode "dev"}}<script src="//localhost:35729/livereload.js"></script>{{end}}
