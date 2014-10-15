@@ -16,6 +16,10 @@ type FileStore interface {
 	// list direct child paths within dir at path
 	ReadDir(path string) (paths []string, err error)
 
+	// list direct and indirect child paths within dir at path for a given depth
+	// depth -1 means unlimited depth
+	ReadDirTree(path string, depth int) (paths []string, err error)
+
 	// move file or dir at path
 	Move(path string, newPath string) (err error)
 
