@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"os"
 
+	"github.com/Marktown/frontend/backends"
 	"github.com/Marktown/frontend/backends/base"
 )
 
@@ -32,7 +33,7 @@ func (this *FileStore) ReadFile(path string) (content []byte, err error) {
 	return
 }
 
-func (this *FileStore) ReadDir(path string) (paths []string, err error) {
+func (this *FileStore) ReadDir(path string) (paths []backends.File, err error) {
 	panic("Not implemented")
 	return
 }
