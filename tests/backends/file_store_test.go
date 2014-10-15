@@ -30,6 +30,7 @@ func TestMain(t *testing.T) {
 	fs := file_system.NewFileStore()
 	fs.RootPath = "../../tmp/tests/fs_file_store/"
 
+	_ = os.MkdirAll(fs.RootPath, os.ModePerm)
 	_ = os.Remove(fs.RootPath + "testfile_b.txt")
 	_ = os.Remove(fs.RootPath + "testfile_b_new.txt")
 	_ = os.Remove(fs.RootPath + "dir_a")
