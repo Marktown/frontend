@@ -18,12 +18,12 @@ func (this *FileStore) CreateFile(path string, content []byte) (err error) {
 }
 
 func (this *FileStore) UpdateFile(path string, content []byte) (err error) {
-	panic("Not implemented")
+	err = ioutil.WriteFile(path, content, os.ModePerm)
 	return
 }
 
 func (this *FileStore) CreateDir(path string) (err error) {
-	panic("Not implemented")
+	err = os.Mkdir(path, os.ModePerm)
 	return
 }
 
@@ -32,8 +32,8 @@ func (this *FileStore) ReadFile(path string) (content []byte, err error) {
 	return
 }
 
-func (this *FileStore) ReadDir(path string) (paths []string, err error) {
-	panic("Not implemented")
+func (this *FileStore) ReadDir(path string) (list []os.FileInfo, err error) {
+	list, err = ioutil.ReadDir(path)
 	return
 }
 

@@ -1,5 +1,9 @@
 package backends
 
+import (
+	"os"
+)
+
 type FileStore interface {
 	// create new file at path
 	CreateFile(path string, content []byte) (err error)
@@ -14,7 +18,7 @@ type FileStore interface {
 	ReadFile(path string) (content []byte, err error)
 
 	// list direct child paths within dir at path
-	ReadDir(path string) (paths []string, err error)
+	ReadDir(path string) (list []os.FileInfo, err error)
 
 	// list direct and indirect child paths within dir at path for a given depth
 	// depth -1 means unlimited depth
