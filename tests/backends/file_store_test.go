@@ -1,7 +1,7 @@
 package test
 
 import (
-	"github.com/Marktown/frontend/models"
+	"github.com/Marktown/frontend/backends/file_system"
 
 	"io"
 	"strings"
@@ -26,25 +26,30 @@ func readAll(reader io.Reader) (data string) {
 
 // TestMain is a sample to run an endpoint test
 func TestMain(t *testing.T) {
-	Convey("Subject: FSFileStore\n", t, func() {
+	Convey("Subject: FileStore\n", t, func() {
+		fs := file_system.NewFileStore()
+		fs.RootPath = "../../tmp/tests/fs_file_store/"
 		Convey("Create", func() {
-			err := models.FSFileStore().CreateFile("../assets/testfile_b.txt", strings.NewReader("foo bar"))
+			So(fs.RootPath, ShouldEqual, "../../tmp/tests/fs_file_store/")
+			err := fs.CreateFile("testfile_b.txt", strings.NewReader("foo bar"))
 			So(err, ShouldBeNil)
-			reader, err := models.FSFileStore().ReadFile("../assets/testfile_b.txt")
+			reader, err := fs.ReadFile("testfile_b.txt")
 			So(readAll(reader), ShouldEqual, "foo bar")
 			So(err, ShouldBeNil)
 		})
 
 		Convey("Read", func() {
-			reader, err := models.FSFileStore().ReadFile("../assets/testfile.txt")
+			fs.RootPath = "../../tests/assets/"
+			reader, err := fs.ReadFile("testfile.txt")
 			So(readAll(reader), ShouldEqual, "this is the textfile\n")
 			So(err, ShouldBeNil)
+			fs.RootPath = "../../tmp/tests/fs_file_store/"
 		})
 
 		Convey("Update", func() {
-			err := models.FSFileStore().UpdateFile("../assets/testfile_b.txt", strings.NewReader("foo bar baz"))
+			err := fs.UpdateFile("testfile_b.txt", strings.NewReader("foo bar baz"))
 			So(err, ShouldBeNil)
-			reader, err := models.FSFileStore().ReadFile("../assets/testfile_b.txt")
+			reader, err := fs.ReadFile("testfile_b.txt")
 			So(readAll(reader), ShouldEqual, "foo bar baz")
 			So(err, ShouldBeNil)
 		})
