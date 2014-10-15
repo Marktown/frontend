@@ -41,7 +41,6 @@ func (this *FilesController) Index() {
 	//this.ServeJson()
 
 	fs := file_system.NewFileStore()
-	fs.RootPath = "tests/assets/testfolder/"
 	list, err := fs.ReadDir("")
 	//TODO error handling
 	if err != nil {

@@ -18,7 +18,7 @@ type FileStore struct {
 
 func NewFileStore() *FileStore {
 	fs := &FileStore{}
-	fs.RootPath = "tmp/fs_file_system/"
+	fs.RootPath = "tmp/fs_file_store/"
 	return fs
 }
 

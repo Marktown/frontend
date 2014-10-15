@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "homepage": "https://github.com/Marktown/frontend",
   "authors": [
-    "Jens Bissinger <mail@jens-bissinger.de>"
+    "Jens Bissinger <mail@jens-bissinger.de>",
+    "Andreas Bissinger <mail@bissinger-andreas.de>"
   ],
   "license": "MIT",
   "ignore": [
