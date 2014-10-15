@@ -33,7 +33,6 @@ func TestMain(t *testing.T) {
 	_ = os.Remove(fs.RootPath + "testfile_b.txt")
 	_ = os.Remove(fs.RootPath + "testfile_b_new.txt")
 	_ = os.Remove(fs.RootPath + "dir_a")
-	_ = os.Remove(fs.RootPath + "testdir")
 
 	Convey("Subject: FileStore\n", t, func() {
 		Convey("Create", func() {
@@ -42,9 +41,6 @@ func TestMain(t *testing.T) {
 			fileReader, fileErr := fs.ReadFile("file_a.txt")
 			So(readAll(fileReader), ShouldEqual, "content_a")
 			So(fileErr, ShouldBeNil)
-
-			dirErr := fs.CreateDir("dir_a")
-			So(dirErr, ShouldBeNil)
 		})
 
 		Convey("Read", func() {
@@ -66,9 +62,9 @@ func TestMain(t *testing.T) {
 		})
 
 		Convey("CreateDir", func() {
-			dirErr := fs.CreateDir("testdir")
+			dirErr := fs.CreateDir("dir_a")
 			So(dirErr, ShouldBeNil)
-			_, dirErr = os.Stat(fs.RootPath + "testdir")
+			_, dirErr = os.Stat(fs.RootPath + "dir_a")
 			So(os.IsExist(dirErr), ShouldBeTrue)
 		})
 
