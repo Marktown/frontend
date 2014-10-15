@@ -1,12 +1,12 @@
 package base
 
 import (
-	"github.com/Marktown/frontend/backends"
+	"os"
 )
 
 type FileStore struct{}
 
-func (this *FileStore) ReadDirTree(path string, depth int) (paths []backends.File, err error) {
-	panic("Not implemented")
+func (this *FileStore) ReadDirTree(path string, depth int) (list []os.FileInfo, err error) {
+	panic("not implemented")
 	return
 }
