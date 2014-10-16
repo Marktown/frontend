@@ -11,11 +11,15 @@ app.controller("Home", function($scope, $http) {
 app.controller("Editor", function($scope, $http, $rootScope, $location, $sce) {
   $rootScope.$on('$locationChangeSuccess', function(event, next, current) {
     var path = $location.$$search.path;
-    $http.get('/files/data?path='+path).success(function (data) {
+    if (typeof(path) === 'undefined') {
+      path = '/';
+    }
+    $http.get('/files/data?path='+path).success(function (data, status, headers, config) {
+      $scope.error = null;
       $scope.file = data;
     }).error(function (data, status, headers, config) {
       $scope.error = $sce.trustAsHtml(data);
-      $scope.status = status;
+      $scope.file = null;
     });
   });
 });
