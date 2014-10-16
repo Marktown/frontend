@@ -37,6 +37,14 @@ Project to learn golang.org to build a Markdown writing environment.
 
 - better name for FileStore "base"
 - implement base.FileStore.ReadDirTree
+- discussing documentation style, implement possibility to create docs
+        - proposal for function-docu-style
+
+        // Create a new user 
+        // Param name : string
+        // Param age  : int
+        // Return User
+        func CreateUser (name string, age int) (user User)
 
 ## License
 
