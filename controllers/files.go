@@ -51,7 +51,11 @@ func (this *FilesController) Read() {
 	fs := file_system.NewFileStore()
 	fs.RootPath = "tests/assets/testfolder/"
 	reader, err := fs.ReadFile(this.GetString("path"))
+	//TODO error handling
 	if err != nil {
+		// possibilities:
+		// * "file does not exist"
+		// * redirect to create-new-file
 		return
 	}
 
