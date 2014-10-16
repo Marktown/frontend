@@ -6,14 +6,14 @@ import (
 )
 
 type FileStore interface {
-	// create new file at given path
-	CreateFile(path string, reader io.Reader) (err error)
-
-	// update existing file at given path
-	UpdateFile(path string, reader io.Reader) (err error)
+	// write content at given path
+	WriteFile(path string, reader io.Reader) (err error)
 
 	// create dir at given path
 	CreateDir(path string) (err error)
+
+	// generate a checksum for a given path (file or directory)
+	Checksum(path string) (err error)
 
 	// read content of file at given path
 	ReadFile(path string) (reader io.Reader, err error)
