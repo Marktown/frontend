@@ -3,13 +3,13 @@ package test
 import (
 	_ "github.com/Marktown/frontend/routers"
 
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"path/filepath"
 	"runtime"
-	"testing"
-	"io/ioutil"
 	"strings"
+	"testing"
 
 	"github.com/astaxie/beego"
 	. "github.com/smartystreets/goconvey/convey"
