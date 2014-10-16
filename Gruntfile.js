@@ -35,7 +35,10 @@ module.exports = function(grunt) {
       livereload: {
         files: [
           '**/*.go',
-          'static/**/*',
+          'static/**/*.css',
+          'static/**/*.js',
+          'static/**/*.png',
+          'static/**/*.jpg',
           'views/**/*'
         ],
         options: {
