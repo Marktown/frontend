@@ -18,6 +18,9 @@ type FileStore interface {
 	// read content of file at given path
 	ReadFile(path string) (reader io.Reader, err error)
 
+	// list direct paths in root dir
+	ReadRoot() (list []os.FileInfo, err error)
+
 	// list direct child paths within dir at path
 	ReadDir(path string) (list []os.FileInfo, err error)
 

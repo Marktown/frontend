@@ -18,8 +18,11 @@ app.controller("Editor", function($scope, $http, $rootScope, $location, $sce) {
       $scope.error = null;
       $scope.file = data;
     }).error(function (data, status, headers, config) {
-      $scope.error = $sce.trustAsHtml(data);
       $scope.file = null;
+      $scope.error = data;
     });
   });
+  $scope.initError = function () {
+    $('.editor-error').get(0).contentWindow.document.write($scope.error);
+  }
 });

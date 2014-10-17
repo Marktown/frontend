@@ -24,7 +24,9 @@
         <div class="col-md-6" marked="file.data"></div>
       </div>
       <div class="container-fluid" ng-if="error">
-        <div class="col-md-12" data-ng-bind-html="error"></div>
+        <div class="col-md-12">
+          <iframe class="editor-error" ng-init="initError()" style="width: 100%; height: 400px; border: 1px solid #eee; margin-bottom: 14px;"></iframe>
+        </div>
       </div>
     </div>
   <div>
