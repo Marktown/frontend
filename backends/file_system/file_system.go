@@ -8,12 +8,9 @@ import (
 
 	"bytes"
 	"crypto/sha1"
-
-	"github.com/Marktown/frontend/backends/base"
 )
 
 type FileStore struct {
-	base.FileStore
 	RootPath string
 }
 
@@ -72,5 +69,23 @@ func (this *FileStore) Checksum(path string) (sum [sha1.Size]byte, err error) {
 		return
 	}
 	sum = sha1.Sum(content)
+	return
+}
+
+func (this *FileStore) ReadDirTree(path string, depth int, tmpList []os.FileInfo) (list []os.FileInfo, err error) {
+	infoList, err := this.ReadDir(path)
+	if err != nil {
+		return
+	}
+	for _, info := range infoList {
+		tmpList = append(tmpList, []os.FileInfo{info}...)
+		if info.IsDir() {
+			depthCopy := depth - 1
+			if depthCopy > 0 {
+				tmpList, err = this.ReadDirTree(path+"/"+info.Name(), depthCopy, tmpList)
+			}
+		}
+	}
+	list = tmpList
 	return
 }
