@@ -24,6 +24,8 @@ _testmain.go
 *.test
 *.prof
 
+*.swp
+
 # Node.js
 node_modules
 static/bower_components
