@@ -9,7 +9,10 @@ import (
 	"text/scanner"
 
 	"bytes"
+	"crypto/sha1"
 	"strings"
+
+	"fmt"
 
 	. "github.com/smartystreets/goconvey/convey"
 )
@@ -38,7 +41,7 @@ func TestMain(t *testing.T) {
 
 	Convey("Subject: FileStore\n", t, func() {
 		Convey("Create file", func() {
-			fileErr := fs.CreateFile("file_a.txt", strings.NewReader("content_a"))
+			fileErr := fs.WriteFile("file_a.txt", strings.NewReader("content_a"))
 			So(fileErr, ShouldBeNil)
 			fileReader, fileErr := fs.ReadFile("file_a.txt")
 			So(readAll(fileReader), ShouldEqual, "content_a")
@@ -93,14 +96,6 @@ func TestMain(t *testing.T) {
 			fs.RootPath = "../../tmp/tests/fs_file_store/"
 		})
 
-		Convey("Update file", func() {
-			fileErr := fs.UpdateFile("file_a.txt", strings.NewReader("content_b"))
-			So(fileErr, ShouldBeNil)
-			fileReader, fileErr := fs.ReadFile("file_a.txt")
-			So(readAll(fileReader), ShouldEqual, "content_b")
-			So(fileErr, ShouldBeNil)
-		})
-
 		Convey("Create dir", func() {
 			dirErr := fs.CreateDir("dir_a")
 			So(dirErr, ShouldBeNil)
@@ -135,6 +130,15 @@ func TestMain(t *testing.T) {
 			So(dirErr, ShouldBeNil)
 			_, dirErr = os.Stat(fs.RootPath + "dir_b")
 			So(os.IsNotExist(dirErr), ShouldBeTrue)
+		})
+
+		Convey("Checksum", func() {
+			fs.RootPath = "../../tests/assets/"
+			sum, err := fs.Checksum("testfile.txt")
+			So(err, ShouldBeNil)
+			stringCorrect := fmt.Sprintf("%x", sha1.Sum([]byte("this is the textfile\n")))
+			stringTest := fmt.Sprintf("%x", sum)
+			So(stringCorrect, ShouldEqual, stringTest)
 		})
 	})
 }

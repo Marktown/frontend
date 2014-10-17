@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"bytes"
+	"crypto/sha1"
 
 	"github.com/Marktown/frontend/backends/base"
 )
@@ -22,17 +23,7 @@ func NewFileStore() *FileStore {
 	return fs
 }
 
-func (this *FileStore) CreateFile(path string, reader io.Reader) (err error) {
-	buffer := bytes.NewBuffer([]byte{})
-	_, err = buffer.ReadFrom(reader)
-	if err != nil {
-		return
-	}
-	err = ioutil.WriteFile(this.RootPath+path, buffer.Bytes(), os.ModePerm)
-	return
-}
-
-func (this *FileStore) UpdateFile(path string, reader io.Reader) (err error) {
+func (this *FileStore) WriteFile(path string, reader io.Reader) (err error) {
 	buffer := bytes.NewBuffer([]byte{})
 	_, err = buffer.ReadFrom(reader)
 	if err != nil {
@@ -68,5 +59,18 @@ func (this *FileStore) Move(path string, newPath string) (err error) {
 
 func (this *FileStore) Delete(path string) (err error) {
 	err = os.Remove(this.RootPath + path)
+	return
+}
+
+func (this *FileStore) Checksum(path string) (sum [sha1.Size]byte, err error) {
+	reader, err := this.ReadFile(path)
+	if err != nil {
+		return
+	}
+	content, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return
+	}
+	sum = sha1.Sum(content)
 	return
 }
