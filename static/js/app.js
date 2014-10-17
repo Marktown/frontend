@@ -9,11 +9,7 @@ app.controller("Home", function($scope, $http) {
   });
 });
 app.controller("Editor", function($scope, $http, $rootScope, $location, $sce) {
-  $rootScope.$on('$locationChangeSuccess', function(event, next, current) {
-    var path = $location.$$search.path;
-    if (typeof(path) === 'undefined') {
-      path = '/';
-    }
+  $rootScope.changePath = function(path) {
     $http.get('/files/data?path='+path).success(function (data, status, headers, config) {
       $scope.error = null;
       $scope.file = data;
@@ -21,7 +17,7 @@ app.controller("Editor", function($scope, $http, $rootScope, $location, $sce) {
       $scope.file = null;
       $scope.error = data;
     });
-  });
+  };
   $scope.initError = function () {
     $('.editor-error').get(0).contentWindow.document.write($scope.error);
   }

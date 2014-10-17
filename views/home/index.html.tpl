@@ -4,7 +4,7 @@
       <div ng-controller="Home">
         <script type="text/ng-template" id="items_renderer.html">
           <div ui-tree-handle>
-            <a href="#/files/data?path=${item.name}">${item.name}</a>
+            <a href="#/files/data?path=${item.name}" ng-click="changePath(item.name)">${item.name}</a>
           </div>
           <ol ui-tree-nodes="" ng-model="item.items">
             <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
