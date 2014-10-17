@@ -140,5 +140,12 @@ func TestMain(t *testing.T) {
 			stringTest := fmt.Sprintf("%x", sum)
 			So(stringCorrect, ShouldEqual, stringTest)
 		})
+
+		Convey("ReadDirTree", func() {
+			fs.RootPath = "../../tests/assets/testfolder/"
+			list, err := fs.ReadDirTree("../../tests/assets/testfolder/", 2, []os.FileInfo{})
+			So(err, ShouldBeNil)
+			So(14, ShouldEqual, len(list))
+		})
 	})
 }
