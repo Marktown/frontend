@@ -16,6 +16,13 @@
             <li ng-repeat="item in items" ui-tree-node ng-include="'items_renderer.html'"></li>
           </ol>
         </div>
+        <div class="row" style="margin-top: 30px;">
+          <div class="col-md-12">
+            <button ng-click="addFile()" class="btn btn-xs">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-md-9 mt-editor" ng-controller="Editor">

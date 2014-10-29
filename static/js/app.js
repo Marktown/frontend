@@ -7,6 +7,9 @@ app.controller("Home", function($scope, $http) {
   $http.get('/files').success(function (data) {
     $scope.items = [data];
   });
+  $scope.addFile = function(){
+    console.log(1)
+  }
 });
 app.controller("Editor", function($scope, $http, $rootScope, $location, $sce) {
   $rootScope.changePath = function(path) {
