@@ -4,11 +4,19 @@ app.config(function($interpolateProvider) {
   $interpolateProvider.endSymbol('}');
 });
 app.controller("Home", function($scope, $http) {
-  $http.get('/files').success(function (data) {
-    $scope.items = [data];
-  });
+  function loadFiles(){
+    $http.get('/files').success(function (data) {
+      $scope.items = [data];
+    });
+  }
+  loadFiles();
   $scope.addFile = function(){
-    console.log(1)
+    var filename = prompt('Please choose a filename', 'Untitled.md');
+    if (filename) {
+      $http.post('/files', {filename: filename, content: "Hello World!"}).success(function(data){
+        loadFiles();
+      });
+    }
   }
 });
 app.controller("Editor", function($scope, $http, $rootScope, $location, $sce) {
