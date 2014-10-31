@@ -27,7 +27,12 @@
     </div>
     <div class="col-md-9 mt-editor" ng-controller="Editor">
       <div class="container-fluid" ng-if="!error">
-        <div class="col-md-6" style="white-space: pre;">${file.data}</div>
+        <textarea
+          class="col-md-6"
+          style="white-space: pre;"
+          ng-model="file.data"
+          ng-change="updateFile()">
+        </textarea>
         <div class="col-md-6" marked="file.data"></div>
       </div>
       <div class="container-fluid" ng-if="error">

@@ -21,6 +21,7 @@ app.controller("Home", function($scope, $http) {
 });
 app.controller("Editor", function($scope, $http, $rootScope, $location, $sce) {
   $rootScope.changePath = function(path) {
+    $scope.path = path;
     $http.get('/files/data?path='+path).success(function (data, status, headers, config) {
       $scope.error = null;
       $scope.file = data;
@@ -31,5 +32,9 @@ app.controller("Editor", function($scope, $http, $rootScope, $location, $sce) {
   };
   $scope.initError = function () {
     $('.editor-error').get(0).contentWindow.document.write($scope.error);
+  }
+  $scope.updateFile= function(){
+    $http.post('/files', {filename: $scope.path, content: $scope.file.data}).success(function(data){
+    });
   }
 });
