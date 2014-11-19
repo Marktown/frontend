@@ -51,7 +51,7 @@ func (this *FileStore) ReadDir(path string) (list []backends.FileInfo, err error
 	if err != nil {
 		return
 	}
-	list = []backends.FileInfo{}
+	list = make([]backends.FileInfo, len(infoList))
 	for index, info := range infoList {
 		list[index] = NewFileInfo(this.RootPath, info)
 	}
