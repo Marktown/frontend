@@ -1,15 +1,15 @@
 package controllers
 
 import (
-	"github.com/Marktown/frontend/backends/file_system"
-	"text/scanner"
-	"strings"
 	"encoding/json"
+	"github.com/Marktown/frontend/backends/file_system"
+	"strings"
+	"text/scanner"
 )
 
 type NewFile struct {
-    Filename string
-    Content string
+	Filename string
+	Content  string
 }
 
 type PathItem struct {
@@ -53,7 +53,7 @@ func (this *FilesController) Write() {
 	fs := file_system.NewFileStore()
 	fs.RootPath = "tests/assets/testfolder/"
 	var newFile NewFile
-  json.Unmarshal(this.Ctx.Input.RequestBody, &newFile)
+	json.Unmarshal(this.Ctx.Input.RequestBody, &newFile)
 	err := fs.WriteFile(newFile.Filename, strings.NewReader(newFile.Content))
 	this.Data["json"] = &err
 	this.ServeJson()

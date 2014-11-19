@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-  beego.CopyRequestBody = true
+	beego.CopyRequestBody = true
 	beego.Run()
 }

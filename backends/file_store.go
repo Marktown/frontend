@@ -2,7 +2,6 @@ package backends
 
 import (
 	"io"
-	"os"
 )
 
 type FileStore interface {
@@ -19,14 +18,14 @@ type FileStore interface {
 	ReadFile(path string) (reader io.Reader, err error)
 
 	// list direct paths in root dir
-	ReadRoot() (list []os.FileInfo, err error)
+	ReadRoot() (list []FileInfo, err error)
 
 	// list direct child paths within dir at path
-	ReadDir(path string) (list []os.FileInfo, err error)
+	ReadDir(path string) (list []FileInfo, err error)
 
 	// list direct and indirect childs within dir at given path for a given depth
 	// depth -1 means unlimited depth
-	ReadDirTree(path string, depth int) (paths []File, err error)
+	ReadDirTree(path string, depth int) (paths []FileInfo, err error)
 
 	// move file or dir at given path
 	Move(path string, newPath string) (err error)

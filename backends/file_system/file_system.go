@@ -8,6 +8,8 @@ import (
 
 	"bytes"
 	"crypto/sha1"
+
+	"github.com/Marktown/frontend/backends"
 )
 
 type FileStore struct {
@@ -44,8 +46,15 @@ func (this *FileStore) ReadFile(path string) (reader io.Reader, err error) {
 	return
 }
 
-func (this *FileStore) ReadDir(path string) (list []os.FileInfo, err error) {
-	list, err = ioutil.ReadDir(this.RootPath + path)
+func (this *FileStore) ReadDir(path string) (list []backends.FileInfo, err error) {
+	infoList, err := ioutil.ReadDir(this.RootPath + path)
+	if err != nil {
+		return
+	}
+	list = []backends.FileInfo{}
+	for index, info := range infoList {
+		list[index] = NewFileInfo(this.RootPath, info)
+	}
 	return
 }
 
@@ -72,20 +81,29 @@ func (this *FileStore) Checksum(path string) (sum [sha1.Size]byte, err error) {
 	return
 }
 
-func (this *FileStore) ReadDirTree(path string, depth int, tmpList []os.FileInfo) (list []os.FileInfo, err error) {
+func (this *FileStore) ReadDirTree(path string, depth int) (list []backends.FileInfo, err error) {
+	list, err = this.ReadDirTreeHelper(path, depth, []backends.FileInfo{})
+	return
+}
+
+func (this *FileStore) ReadDirTreeHelper(path string, depth int, tmpList []backends.FileInfo) (list []backends.FileInfo, err error) {
 	infoList, err := this.ReadDir(path)
 	if err != nil {
 		return
 	}
 	for _, info := range infoList {
-		tmpList = append(tmpList, []os.FileInfo{info}...)
+		tmpList = append(tmpList, []backends.FileInfo{info}...)
 		if info.IsDir() {
 			depthCopy := depth - 1
 			if depthCopy > 0 {
-				tmpList, err = this.ReadDirTree(path+"/"+info.Name(), depthCopy, tmpList)
+				tmpList, err = this.ReadDirTreeHelper(path+"/"+info.Name(), depthCopy, tmpList)
 			}
 		}
 	}
 	list = tmpList
 	return
+}
+
+func (this *FileStore) ReadRoot() (list []backends.FileInfo, err error) {
+	return this.ReadDir("")
 }

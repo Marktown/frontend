@@ -143,7 +143,7 @@ func TestMain(t *testing.T) {
 
 		Convey("ReadDirTree", func() {
 			fs.RootPath = "../../tests/assets/testfolder/"
-			list, err := fs.ReadDirTree("", 2, []os.FileInfo{})
+			list, err := fs.ReadDirTree("", 2)
 			So(err, ShouldBeNil)
 			So(14, ShouldEqual, len(list))
 		})
